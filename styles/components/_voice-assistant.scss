@@ -29,13 +29,7 @@
         background-clip: border-box;
         background-clip: text;
         /* stylelint-disable */
-        background-image: linear-gradient(
-            -225deg,
-            $color-global-black 0%,
-            $color-global-black 29%,
-            $color-warn 67%,
-            $color-global-black 100%
-        );
+        background-image: linear-gradient(-225deg, $color-global-black 0%, $color-global-black 29%, $color-warn 67%, $color-global-black 100%);
         /* stylelint-enable */
         background-size: auto auto;
         background-size: 200% auto;

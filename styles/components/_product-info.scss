@@ -16,6 +16,22 @@
         display: inline-block;
     }
 
+    &__target {
+        font-size: 2.15rem;
+        font-weight: 600;
+        letter-spacing: 0.25rem;
+        margin-top: 2.5rem;
+        text-transform: uppercase;
+        text-underline-offset: 0.75rem;
+        &:hover {
+            color: #436eff;
+        }
+    }
+
+    &__articles {
+        margin: 1.5rem 0;
+    }
+
     &__reviews {
         color: $color-shade-5;
         font-size: $u-medium-text;

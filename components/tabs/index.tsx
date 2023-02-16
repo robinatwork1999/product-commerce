@@ -20,9 +20,7 @@ const TabsWrapper = ({ tabList }: TabProps): JSX.Element => {
                 {tabList.map((tabData: Tablist, index: number) => {
                     return (
                         <React.Fragment key={index}>
-                            <TabPanel forceRender={tabData.forceRender}>
-                                {tabData.tabContent}
-                            </TabPanel>
+                            <TabPanel forceRender={tabData.forceRender}>{tabData.tabContent}</TabPanel>
                         </React.Fragment>
                     );
                 })}

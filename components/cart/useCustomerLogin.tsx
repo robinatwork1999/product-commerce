@@ -9,8 +9,7 @@ const CUSTOMER_LOGIN = gql`
 `;
 
 export const useCustomerLogin = (): Function | null => {
-    const [loginFn, { data: loginData, loading: loginLoading, error: loginError }] =
-        useMutation(CUSTOMER_LOGIN);
+    const [loginFn, { data: loginData, loading: loginLoading, error: loginError }] = useMutation(CUSTOMER_LOGIN);
 
     if (loginLoading) {
         console.log('logging in...');
@@ -51,9 +50,7 @@ export const loginHandler = (loginFn: Function) => {
             },
             onCompleted: (loginData: any) => {
                 if (loginData) {
-                    const token = loginData.generateCustomerToken
-                        ? loginData.generateCustomerToken.token
-                        : null;
+                    const token = loginData.generateCustomerToken ? loginData.generateCustomerToken.token : null;
                     if (token) {
                         sessionStorage.setItem('token', token);
                     }

@@ -31,21 +31,11 @@ export type AvailablePaymentMethodType = {
 export const useAvailablePaymentMethods = (): AvailablePaymentMethodType | null => {
     const [
         getAvailablePaymentMethodsFn,
-        {
-            data: availablePaymentMethodData,
-            loading: availablePaymentMethodLoading,
-            error: availablePaymentMethodError,
-        },
+        { data: availablePaymentMethodData, loading: availablePaymentMethodLoading, error: availablePaymentMethodError },
     ] = useLazyQuery(GET_AVAILABLE_PAYMENT_METHODS);
 
-    const [
-        setPaymentMethodFn,
-        {
-            data: setPaymentMethodData,
-            loading: setPaymentMethodLoading,
-            error: setPaymentMethodError,
-        },
-    ] = useMutation(SET_PAYMENT_METHODS);
+    const [setPaymentMethodFn, { data: setPaymentMethodData, loading: setPaymentMethodLoading, error: setPaymentMethodError }] =
+        useMutation(SET_PAYMENT_METHODS);
 
     if (availablePaymentMethodLoading) {
         console.log('Available Payment Methods in...');
@@ -53,10 +43,7 @@ export const useAvailablePaymentMethods = (): AvailablePaymentMethodType | null 
     }
 
     if (availablePaymentMethodError) {
-        console.error(
-            'Error in setting availablePaymentMethod address... ',
-            availablePaymentMethodError,
-        );
+        console.error('Error in setting availablePaymentMethod address... ', availablePaymentMethodError);
         return null;
     }
 
@@ -98,10 +85,7 @@ export const getAvailablePaymentMethodHandler = (getAvailablePaymentMethodsFn: F
     });
 };
 
-export const setPaymentMethodOnCartHandler = (
-    setPaymentMethodFn: Function,
-    paymentMethodCode: string,
-) => {
+export const setPaymentMethodOnCartHandler = (setPaymentMethodFn: Function, paymentMethodCode: string) => {
     return new Promise((resolve, reject) => {
         setPaymentMethodFn({
             variables: {

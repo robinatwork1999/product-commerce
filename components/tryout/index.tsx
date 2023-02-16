@@ -74,9 +74,7 @@ const TryoutWrapper = ({ title, camError }: { [x: string]: string }): JSX.Elemen
                             <canvas
                                 ref={canvasRef}
                                 className="tryon__canvas"
-                                onContextMenu={(
-                                    event: React.MouseEvent<HTMLCanvasElement, MouseEvent>,
-                                ) => event.preventDefault()}
+                                onContextMenu={(event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => event.preventDefault()}
                             />
                         </div>
                     </React.Fragment>
