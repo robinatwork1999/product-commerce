@@ -18,4 +18,5 @@ jobs:
           node-version: 18
       - name: Setup configurations
         run: |
+             npm i
              npm run input-check --arg={{ github.event.inputs.emailid }}
