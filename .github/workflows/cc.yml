@@ -19,4 +19,4 @@ jobs:
       - name: Setup configurations
         run: |
              npm install --legacy-peer-deps
-             npm run input-check -- --arg=${{ github.event.inputs.emailid }}
+             npm run input-check --arg=${{ github.event.inputs.emailid }}
