@@ -4,8 +4,9 @@ name: Theme-Generator - Agency-Dispatch
     inputs:
       emailid:
         required: true
-        type: text
+        type: boolean
         description: Email ID for Notification
+        default: false
 
 jobs:
   generate:
@@ -16,7 +17,5 @@ jobs:
         with:
           node-version: 18
       - name: Setup configurations
-        run: >
-          echo "GITHUB_ORG=AEMCS" >> $GITHUB_ENV
-          echo "GITHUB_ACTOR=${{ github.actor }}" >> $GITHUB_ENV
-          echo "GITHUB_INPUT=${{ github.event.inputs.emailid }}"
+        run: |
+             npm run input-check --arg={{ github.event.inputs.emailid }}
