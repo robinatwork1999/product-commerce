@@ -3,10 +3,9 @@ name: Theme-Generator - Agency-Dispatch
   workflow_dispatch:
     inputs:
       emailid:
-        required: true
         type: boolean
         description: Email ID for Notification
-        default: false
+        default: 'false'
 
 jobs:
   generate:
