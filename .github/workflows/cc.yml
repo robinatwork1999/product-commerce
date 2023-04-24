@@ -1,13 +1,9 @@
 name: Theme-Generator - Agency-Dispatch
-on:
-  workflow_dispatch:
-  create:
-    branches:
-      - 'release/**'
-      - 'main'
+on: create
 
 jobs:
   generate:
+    if: ${{ contains(github.ref, 'refs/heads/releases/') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
