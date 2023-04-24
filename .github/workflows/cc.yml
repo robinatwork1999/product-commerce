@@ -12,6 +12,6 @@ jobs:
           node-version: 18
       - name: Setup configurations
         run: |
-             echo "github.ref" 
+             echo "${{ github.ref }}" 
              npm install --legacy-peer-deps
              npm run input-check --argum=${{ github.event.inputs.emailid }}
