@@ -1,11 +1,10 @@
 name: Theme-Generator - Agency-Dispatch
-'on':
+on:
   workflow_dispatch:
-    inputs:
-      emailid:
-        type: boolean
-        description: Email ID for Notification
-        default: 'false'
+  push:
+    branches:
+      - 'release/**'
+      - 'main'
 
 jobs:
   generate:
