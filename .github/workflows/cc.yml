@@ -1,17 +1,12 @@
 name: Theme-Generator - Agency-Dispatch
-on: create
-
+on:
+  pull_request:
+    types: 
+      - closed
+    branches: 
+     - main
 jobs:
-  generate:
-    if: ${{ contains(github.ref, 'refs/heads/releases/') }}
+  specific_review_requested:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Setup configurations
-        run: |
-             echo "${{ github.ref }}" 
-             npm install --legacy-peer-deps
-             npm run input-check --argum=${{ github.event.inputs.emailid }}
+      - run: echo 'PR Merged'
