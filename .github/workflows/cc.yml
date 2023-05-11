@@ -1,12 +1,15 @@
 name: Theme-Generator - Agency-Dispatch
 on:
   pull_request:
-    types: 
+    types:
       - closed
     branches: 
-     - main
+      - main
+
 jobs:
-  specific_review_requested:
+  if_merged:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'PR Merged'
+    - run: |
+        echo The PR was merged
