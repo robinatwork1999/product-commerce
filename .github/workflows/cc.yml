@@ -12,5 +12,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "${{ github.actor.name }}"
+        echo "${{ github.actor }}"
         echo The PR was merged
