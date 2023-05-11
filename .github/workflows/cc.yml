@@ -13,4 +13,5 @@ jobs:
     steps:
     - run: |
         echo "${{ github.actor }}"
+        echo "${{ github.event.pull_request.head.sha }}"
         echo The PR was merged
