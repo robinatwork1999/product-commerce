@@ -9,6 +9,7 @@ on:
 
 concurrency:
   group: stage123
+  cancel-in-progress: false
 
 
 jobs:
