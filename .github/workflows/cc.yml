@@ -8,8 +8,8 @@ on:
 
 
 concurrency:
-  group: ${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
+  group: stage123
+
 
 jobs:
   if_merged:
