@@ -24,6 +24,8 @@ jobs:
     - name: Install Dependencies
       if: steps.cache-nodeq-modules.outputs.cache-hit != 'true'
       run: cd sample && npm i --legacy-peer-deps
+    - name: Echoooo
+      run: echo "${{ toJSON(github) }}"
     - name: ok  
       run: | 
           cat file1.txt
@@ -33,6 +35,8 @@ jobs:
           git config --local user.name "github-actions"
           git commit -m "updated file1"
           git push
+    - name: Echoooo
+      run: echo "${{ toJSON(github) }}"          
     - name: newok   
       run: | 
           cat file1.txt
