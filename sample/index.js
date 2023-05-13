@@ -1,3 +1,3 @@
 const fse = require("fs-extra");
 
-console.log(fse);
+process.env.version = 1;
