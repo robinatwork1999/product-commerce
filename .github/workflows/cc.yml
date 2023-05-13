@@ -7,6 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        ref: main
 
     - name: Cache node modules
       id: cache-nodeq-modules
@@ -26,6 +29,7 @@ jobs:
       run: cd sample && npm i --legacy-peer-deps
     - name: ok  
       run: |  
+          date > file1.txt
           git add file1.txt
           git config --local user.email "github-actions@users.noreply.github.com"
           git config --local user.name "github-actions"
