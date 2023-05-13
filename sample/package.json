@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start": "node index",
+        "start": "node index.js",
         "lint": "next lint",
         "lint:css": "stylelint '**/*.scss'",
         "fix:css": "stylelint --fix '**/*.{css,scss}'",
