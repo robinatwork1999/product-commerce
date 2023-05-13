@@ -37,7 +37,9 @@ jobs:
           git commit -m "updated file1"
           git push
     - name: Echoooo
-      run: echo "${{ toJSON(github) }}"          
+      run: |
+       git fetch --prune --unshallow
+       echo "${{ toJSON(github) }}"          
     - name: newok   
       run: | 
           cat file1.txt
