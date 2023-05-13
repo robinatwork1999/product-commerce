@@ -26,7 +26,7 @@ jobs:
       if: steps.cache-nodeq-modules.outputs.cache-hit != 'true'
       run: cd sample && npm i --legacy-peer-deps
     - name: Echoooo
-      run: echo "${{ toJSON(github) }}"
+      run: cat file1.txt
     - name: ok  
       run: | 
         sleep 50
