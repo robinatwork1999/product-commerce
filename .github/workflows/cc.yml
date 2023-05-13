@@ -24,3 +24,5 @@ jobs:
     - name: Install Dependencies
       if: steps.cache-nodemodules.outputs.cache-hit != 'true'
       run: cd sample && npm i --legacy-peer-deps
+    - name: Run Script
+      run: cd sample && npm run start 
