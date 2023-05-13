@@ -29,17 +29,7 @@ jobs:
       run: echo "${{ toJSON(github) }}"
     - name: ok  
       run: | 
-          cat file1.txt
-          date > file1.txt
-          git add file1.txt
-          git config --local user.email "github-actions@users.noreply.github.com"
-          git config --local user.name "github-actions"
-          git commit -m "updated file1"
-          git push
-    - name: Echoooo
-      run: |
-       git pull
-       echo "${{ toJSON(github) }}"          
+        sleep 50
     - name: newok   
       run: | 
           cat file1.txt
