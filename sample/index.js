@@ -1,3 +1,3 @@
-const fse = require("fs-extra");
+const fs = require("fs");
 
-process.env.version = 1;
+fs.writeFileSync('index2',"okok")
