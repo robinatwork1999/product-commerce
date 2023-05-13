@@ -26,12 +26,18 @@ jobs:
       if: steps.cache-nodeq-modules.outputs.cache-hit != 'true'
       run: cd sample && npm i --legacy-peer-deps
     - name: Echoooo
-      run: cat file1.txt
+      run: cat package.json
     - name: ok  
       run: | 
         sleep 50
-    - name: newok   
-      run: | 
-          git pull
-          cat file1.txt
+    - name: Pull The Latest Repository Changes
+      run: git pull --no-rebase    
+    - name: Extract New Version From Package File
+      uses: sergeysova/jq-action@v2
+      id: version
+      with:
+          cmd: "jq .version package.json -r"
+    - name: Setup Configurations For New Version
+      run: |
+        echo "RELEASE_VERSION=${{ steps.version.outputs.value }}" >> $GITHUB_ENV
 
