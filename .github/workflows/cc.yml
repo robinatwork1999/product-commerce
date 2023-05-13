@@ -18,7 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        sleep 100
-        echo "${{ github.event.pull_request }}"
+        sleep 10
+        echo "${{ github.event.pull_request.pr_title }}"
+        echo "${{ github.event.workflow_run.id }}"
         echo "${{ github.event.pull_request.merge_commit_sha }}"
         echo The PR was merged
