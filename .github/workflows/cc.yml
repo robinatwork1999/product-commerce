@@ -1,16 +1,43 @@
-name: Theme-Generator - Agency-Dispatch
-on: create
+name: Caching npm packages
+
+on: push
 
 jobs:
-  generate:
-    if: ${{ contains(github.ref, 'refs/heads/releases/') }}
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Setup configurations
-        run: |
-             npm install --legacy-peer-deps
-             npm run input-check --argum=${{ github.event.inputs.emailid }}
+    - uses: actions/checkout@v2
+      with:
+       fetch-depth: 0
+    - name: Cache node modules
+      id: cache-nodeq-modules
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-nodeq-modules
+      with:
+        # caching node_modules
+        path: sample/node_modules
+        key: ${{ runner.os }}-builds-${{ env.cache-name }}-${{ hashFiles('sample/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-builds-${{ env.cache-name }}-
+          ${{ runner.os }}-builds-
+          ${{ runner.os }}-
+    - name: Install Dependencies
+      if: steps.cache-nodeq-modules.outputs.cache-hit != 'true'
+      run: cd sample && npm i --legacy-peer-deps
+    - name: Echoooo
+      run: cat package.json
+    - name: ok  
+      run: | 
+        sleep 50
+    - name: Pull The Latest Repository Changes
+      run: git pull --no-rebase    
+    - name: Extract New Version From Package File
+      uses: sergeysova/jq-action@v2
+      id: version
+      with:
+          cmd: "jq .version package.json -r"
+    - name: Setup Configurations For New Version
+      run: |
+        echo "RELEASE_VERSION=${{ steps.version.outputs.value }}" >> $GITHUB_ENV
+
