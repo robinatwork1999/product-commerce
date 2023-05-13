@@ -28,11 +28,15 @@ jobs:
       if: steps.cache-nodeq-modules.outputs.cache-hit != 'true'
       run: cd sample && npm i --legacy-peer-deps
     - name: ok  
-      run: |  
+      run: | 
+          cat file1.txt
           date > file1.txt
           git add file1.txt
           git config --local user.email "github-actions@users.noreply.github.com"
           git config --local user.name "github-actions"
           git commit -m "updated file1"
           git push
+    - name: newok   
+      run: | 
+          cat file1.txt
 
