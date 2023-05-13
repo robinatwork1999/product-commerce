@@ -15,9 +15,8 @@ jobs:
         cache-name: cache-node-modules
       with:
         # caching node_modules
-        path: | 
-         **/node_modules
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        path: sample/node_modules
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('sample/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-build-${{ env.cache-name }}-
           ${{ runner.os }}-build-
@@ -26,4 +25,4 @@ jobs:
       if: steps.cache-nodemodules.outputs.cache-hit != 'true'
       run: cd sample && npm i --legacy-peer-deps
     - name: Run Script
-      run: cd sample && npm run start 
+      run: cd sample && npm link --force && npm run start 
