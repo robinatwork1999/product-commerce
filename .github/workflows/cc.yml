@@ -9,10 +9,10 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Cache node modules
-      id: cache-nodemodules
+      id: cache-nodeq-modules
       uses: actions/cache@v2
       env:
-        cache-name: cache-node-modules
+        cache-name: cache-nodeq-modules
       with:
         # caching node_modules
         path: sample/node_modules
@@ -22,7 +22,7 @@ jobs:
           ${{ runner.os }}-builds-
           ${{ runner.os }}-
     - name: Install Dependencies
-      if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+      if: steps.cache-nodeq-modules.outputs.cache-hit != 'true'
       run: cd sample && npm i --legacy-peer-deps
     - name: Run Script
       run: cd sample && npm link --force && npm run start 
