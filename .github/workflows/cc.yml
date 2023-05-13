@@ -16,10 +16,10 @@ jobs:
       with:
         # caching node_modules
         path: sample/node_modules
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('sample/package-lock.json') }}
+        key: ${{ runner.os }}-builds-${{ env.cache-name }}-${{ hashFiles('sample/package-lock.json') }}
         restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
+          ${{ runner.os }}-builds-${{ env.cache-name }}-
+          ${{ runner.os }}-builds-
           ${{ runner.os }}-
     - name: Install Dependencies
       if: steps.cache-nodemodules.outputs.cache-hit != 'true'
