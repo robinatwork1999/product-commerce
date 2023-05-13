@@ -23,4 +23,4 @@ jobs:
           ${{ runner.os }}-
     - name: Install Dependencies
       if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-      run: npm i --legacy-peer-deps
+      run: cd sample && npm i --legacy-peer-deps
