@@ -19,6 +19,6 @@ jobs:
     steps:
     - run: |
         sleep 100
-        echo "${{ github.event.pull_request.head_ref }}"
+        echo "${{ github.event.pull_request }}"
         echo "${{ github.event.pull_request.merge_commit_sha }}"
         echo The PR was merged
