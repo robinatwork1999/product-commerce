@@ -32,5 +32,6 @@ jobs:
         sleep 50
     - name: newok   
       run: | 
+          git pull
           cat file1.txt
 
