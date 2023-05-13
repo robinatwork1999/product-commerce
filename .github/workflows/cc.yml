@@ -24,6 +24,8 @@ jobs:
     - name: Install Dependencies
       if: steps.cache-nodeq-modules.outputs.cache-hit != 'true'
       run: cd sample && npm i --legacy-peer-deps
+    - name: Old Content
+      run: cat index2
     - name: Run Script
       run: cd sample && npm run start && cat index2
     - name: Echo Node
