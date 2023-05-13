@@ -28,3 +28,10 @@ jobs:
       run: cd sample && npm run start && cat index2
     - name: Echo Node
       run: cd sample && npm run start1
+    - name: Extract version from package.json
+      uses: sergeysova/jq-action@v2
+      id: version
+      with:
+        cmd: 'jq .version package.json -r'
+    - name: Show my version
+      run: 'echo "version ${{ steps.version.outputs.value }}"'
