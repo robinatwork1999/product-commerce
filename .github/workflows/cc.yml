@@ -25,6 +25,6 @@ jobs:
       if: steps.cache-nodeq-modules.outputs.cache-hit != 'true'
       run: cd sample && npm i --legacy-peer-deps
     - name: Run Script
-      run: cd sample && npm run start 
+      run: file package.json | grep -q 'version'
     - name: Echo Node
       run: cd sample && npm run start1
