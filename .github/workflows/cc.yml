@@ -24,16 +24,11 @@ jobs:
     - name: Install Dependencies
       if: steps.cache-nodeq-modules.outputs.cache-hit != 'true'
       run: cd sample && npm i --legacy-peer-deps
-    - name: Old Content
-      run: cat index2
-    - name: Run Script
-      run: cd sample && npm run start && cat index2
-    - name: Echo Node
-      run: cd sample && npm run start1
-    - name: Extract version from package.json
-      uses: sergeysova/jq-action@v2
-      id: version
-      with:
-        cmd: 'jq .version package.json -r'
-    - name: Show my version
-      run: 'echo "version ${{ steps.version.outputs.value }}"'
+    - name: ok  
+    - run: |  
+          git add file1.txt
+          git config --local user.email "github-actions@users.noreply.github.com"
+          git config --local user.name "github-actions"
+          git commit -m "updated file1"
+          git push
+
