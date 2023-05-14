@@ -13,7 +13,7 @@ yarn d
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
 You can startiting the page by modifyg `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hllo.ts`.
+[API routes](https://nextjs.org/docs/api-routes/intruction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hllo.ts`.
 
 The `pages/api` directory is mapped t `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
