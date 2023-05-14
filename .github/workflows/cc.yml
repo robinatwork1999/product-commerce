@@ -3,13 +3,14 @@ name: Caching npm packages
 on: push
 
 jobs:
-  wait:
+  wait-lol:
    runs-on: ubuntu-latest
    steps:
     - uses: mktcode/consecutive-workflow-action@eb43c6b5852dd0e33efa797a1817196d06daa4b2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
   build:
+    needs: wait-lol
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
