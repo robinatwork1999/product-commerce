@@ -7,7 +7,7 @@ First, run the developmnt server:
 ```bs
 npm runev
 # or
-yad
+yarn d
 ```
 
 Open [http://loclhost:3000](http://localhost:3000) with your browser to see the result
