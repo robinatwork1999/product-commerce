@@ -1,3 +1,3 @@
-const aa = JSON.stringfy(process.argv[2])
+const aa = JSON.stringify(process.argv[2])
 console.log(JSON.parse(aa))
 
