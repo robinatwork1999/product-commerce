@@ -10,61 +10,14 @@ on:
       - qa
 
 jobs:
-  wait-for-concurrency:
-    name: Waiting For Previous Active Job(s) To Finish
+  validate-branch:
+    name: Validate Branch Name
     runs-on: ubuntu-latest
     steps:
-      - uses: mktcode/consecutive-workflow-action@eb43c6b5852dd0e33efa797a1817196d06daa4b2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-  update-version:
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    needs: wait-for-concurrency
-    name: Update Platform Version
-    steps:
-      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Setup configurations
+      - name: Check if the branch name conforms with the branch naming convention
         run: |
-          echo "RELEASE=true" >> $GITHUB_ENV
-      - name: Cache Project Depandancies
-        id: cache-git-node-modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-git-node-modules
-        with:
-          path: packages/git-automation/node_modules
-          key: ${{ runner.os }}-node-${{ env.cache-name }}-${{ hashFiles('sample/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ env.cache-name }}-
-            ${{ runner.os }}-node-
-            ${{ runner.os }}-
-      - name: Install Depandancies (If Cache Doesn't Hit)
-        if: steps.cache-git-node-modules.outputs.cache-hit != 'true'
-        run: |
-          cd sample && npm install --legacy-peer-deps
-      - name: Build & Link Depandancies (If Cache Hit)
-        if: steps.cache-git-node-modules.outputs.cache-hit == 'true'
-        run: |
-          echo "Already Installed"
-      - name: Updating The Version Based On Branch Name
-        run: |
-          sleep 50
-      - name: Pull The Latest Repository Changes
-        run: git pull --no-rebase
-      - name: Extract New Version From Package File
-        uses: sergeysova/jq-action@v2
-        id: version
-        with:
-          cmd: "jq .version package.json -r"
-      - name: Setup Configurations For New Version
-        run: |
-          echo "RELEASE_VERSION=${{ steps.version.outputs.value }}" >> $GITHUB_ENV
-          echo "${{ github.event.pull_request.merge_commit_sha }}"
-          echo "${{ github.event.pull_request.title }}"
-          echo "${{ github.event.pull_request.number }}"
           echo "${{ github.event.pull_request.head_ref }}"
+          node ./.github/scripts/test.js ${{ github.event.pull_request.head_ref }}
