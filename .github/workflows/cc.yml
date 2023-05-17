@@ -46,7 +46,7 @@ jobs:
       - name: Install Depandancies (If Cache Doesn't Hit)
         if: steps.cache-git-node-modules.outputs.cache-hit != 'true'
         run: |
-          cd sample && npm install
+          cd sample && npm install --legacy-peer-deps
       - name: Build & Link Depandancies (If Cache Hit)
         if: steps.cache-git-node-modules.outputs.cache-hit == 'true'
         run: |
