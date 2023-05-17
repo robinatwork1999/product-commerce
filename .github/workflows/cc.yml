@@ -23,5 +23,5 @@ jobs:
                   node-version: 18
             - name: Check if the user is a allowed to run the workflow
               run: |
-                  echo "REPOSITORY_NAME=${{ github.event.pull_request.body }}" >> $GITHUB_ENV
+                  echo "REPOSITORY_NAME="${{ github.event.pull_request.body }}"" >> $GITHUB_ENV
                   node ./.github/scripts/test.js
