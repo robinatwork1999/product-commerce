@@ -3,11 +3,15 @@
 
 name: Platform Versioning
 on: 
- issue_comment:
-   types: [created, edited]
- pull_request:
-   branches:
-      - 'qa'
+  pull_request:
+    types:
+      - opened
+      - edited
+
+  issue_comment:
+    types:
+      - created
+      - edited
 
 jobs:
   pr_commented:
