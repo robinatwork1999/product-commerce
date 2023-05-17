@@ -1,7 +1,7 @@
 ### Description
 What:
 
-How:
+How: <input type="text" />
 
 Link to Jira Ticket: 
 
