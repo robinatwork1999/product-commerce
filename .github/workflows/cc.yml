@@ -64,3 +64,7 @@ jobs:
       - name: Setup Configurations For New Version
         run: |
           echo "RELEASE_VERSION=${{ steps.version.outputs.value }}" >> $GITHUB_ENV
+          echo "${{ github.event.pull_request.merge_commit_sha }}"
+          echo "${{ github.event.pull_request.title }}"
+          echo "${{ github.event.pull_request.number }}"
+          echo "${{ github.event.pull_request.head_ref }}"
