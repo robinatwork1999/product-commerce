@@ -1,50 +1,66 @@
-name: Caching npm packages
+# This workflow will run after the pull request is merged
+# This workflow will update the platform version and will create release tag
 
-on: push
+name: Platform Versioning
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - qa
 
 jobs:
-  wait-lol:
-   runs-on: ubuntu-latest
-   steps:
-    - uses: mktcode/consecutive-workflow-action@eb43c6b5852dd0e33efa797a1817196d06daa4b2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-  build:
-    needs: wait-lol
+  wait-for-concurrency:
+    name: Waiting For Previous Active Job(s) To Finish
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-       fetch-depth: 0
-    - name: Cache node modules
-      id: cache-nodeq-modules
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-nodeq-modules
-      with:
-        # caching node_modules
-        path: sample/node_modules
-        key: ${{ runner.os }}-builds-${{ env.cache-name }}-${{ hashFiles('sample/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-builds-${{ env.cache-name }}-
-          ${{ runner.os }}-builds-
-          ${{ runner.os }}-
-    - name: Install Dependencies
-      if: steps.cache-nodeq-modules.outputs.cache-hit != 'true'
-      run: cd sample && npm i --legacy-peer-deps
-    - name: Echoooo
-      run: cat package.json
-    - name: ok  
-      run: | 
-        sleep 50
-    - name: Pull The Latest Repository Changes
-      run: git pull --no-rebase    
-    - name: Extract New Version From Package File
-      uses: sergeysova/jq-action@v2
-      id: version
-      with:
-          cmd: "jq .version package.json -r"
-    - name: Setup Configurations For New Version
-      run: |
-        echo "RELEASE_VERSION=${{ steps.version.outputs.value }}" >> $GITHUB_ENV
+      - uses: mktcode/consecutive-workflow-action@eb43c6b5852dd0e33efa797a1817196d06daa4b2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
+  update-version:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    needs: wait-for-concurrency
+    name: Update Platform Version
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Setup configurations
+        run: |
+          echo "RELEASE=true" >> $GITHUB_ENV
+      - name: Cache Project Depandancies
+        id: cache-git-node-modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-git-node-modules
+        with:
+          path: packages/git-automation/node_modules
+          key: ${{ runner.os }}-node-${{ env.cache-name }}-${{ hashFiles('sample/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ env.cache-name }}-
+            ${{ runner.os }}-node-
+            ${{ runner.os }}-
+      - name: Install Depandancies (If Cache Doesn't Hit)
+        if: steps.cache-git-node-modules.outputs.cache-hit != 'true'
+        run: |
+          cd sample && npm run install
+      - name: Build & Link Depandancies (If Cache Hit)
+        if: steps.cache-git-node-modules.outputs.cache-hit == 'true'
+        run: |
+          echo "Already Installed"
+      - name: Updating The Version Based On Branch Name
+        run: |
+          sleep 50
+      - name: Pull The Latest Repository Changes
+        run: git pull --no-rebase
+      - name: Extract New Version From Package File
+        uses: sergeysova/jq-action@v2
+        id: version
+        with:
+          cmd: "jq .version package.json -r"
+      - name: Setup Configurations For New Version
+        run: |
+          echo "RELEASE_VERSION=${{ steps.version.outputs.value }}" >> $GITHUB_ENV
