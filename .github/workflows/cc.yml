@@ -2,7 +2,9 @@
 # This workflow will update the platform version and will create release tag
 
 name: Platform Versioning
-on: issue_comment
+on: 
+ issue_comment:
+   types: [created, edited]
 
 jobs:
   pr_commented:
