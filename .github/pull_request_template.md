@@ -1,13 +1,13 @@
 ### Description
 
-[## What]:
+## [What]:
 
 ---
 
-[How]:
+## [How]:
 
 ---
 
-[Link to Jira Ticket]:
+## [Link to Jira Ticket]:
 
 ---
