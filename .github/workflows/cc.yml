@@ -20,5 +20,5 @@ jobs:
           node-version: 18
       - name: Check if the branch name conforms with the branch naming convention
         run: |
-          echo "${{ github.event.pull_request.head_ref }}"
+          echo "${{ toJSON(github) }}"
           node ./.github/scripts/test.js ${{ github.event.pull_request.head_ref }}
