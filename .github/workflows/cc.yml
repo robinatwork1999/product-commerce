@@ -24,3 +24,10 @@ jobs:
             - name: Check if the user is a allowed to run the workflow
               run: |
                   node ./.github/scripts/test.js "${{ toJson(github.event.pull_request) }}"
+            - name: Other variables with ENV
+              run: |
+                echo "Commits:" $COMMITS
+                echo "Message:" $MESSAGE
+                echo "Author Email:" $(echo $AUTHOR | jq -r '.body')
+              env:
+                AUTHOR: ${{ toJSON(github.event.pull_request) }}
