@@ -1,8 +1,12 @@
 import '@styles/_product-info.scss';
 import Rating from 'components/rating';
+import Link from 'next/link';
 import { ProductInfoTypes } from './product-info.tsx';
 
 const ProductInfo = ({ productMeta, features, tags }: ProductInfoTypes): JSX.Element => {
+    const anchorProps = {
+        target: '_self',
+    };
     return (
         <div className="product-info">
             <p className="product-info__title">{productMeta?.title}</p>
@@ -32,6 +36,13 @@ const ProductInfo = ({ productMeta, features, tags }: ProductInfoTypes): JSX.Ele
                         </li>
                     ))}
                 </ul>
+            </div>
+            <div className="product-info__articles">
+                <Link href="https://main--my-franklin-website--manaswini-mahala.hlx.live/" legacyBehavior>
+                    <a className="product-info__target" {...anchorProps}>
+                        Related Articles
+                    </a>
+                </Link>
             </div>
         </div>
     );

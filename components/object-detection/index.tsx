@@ -45,10 +45,7 @@ const ObjectDetection = ({ title, subInfo, camError }: ObjectDetectionTypes): JS
     };
 
     const detectObj = async (net: cocossd.ObjectDetection) => {
-        if (
-            typeof webcamRef.current !== 'undefined' &&
-            webcamRef?.current?.video?.readyState === 4
-        ) {
+        if (typeof webcamRef.current !== 'undefined' && webcamRef?.current?.video?.readyState === 4) {
             const video = webcamRef.current?.video;
             setCanvas(video);
             const obj = await net.detect(video);
@@ -95,12 +92,7 @@ const ObjectDetection = ({ title, subInfo, camError }: ObjectDetectionTypes): JS
                                     onUserMediaError={() => setWebCamError(true)}
                                     videoConstraints={{ ...videoConstraints }}
                                 />
-                                <canvas
-                                    height={480}
-                                    width={640}
-                                    ref={canvasRef}
-                                    className="object-detection__canvas"
-                                />
+                                <canvas height={480} width={640} ref={canvasRef} className="object-detection__canvas" />
                             </div>
                         </div>
                         <div className="object-detection__disc">

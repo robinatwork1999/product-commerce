@@ -30,8 +30,7 @@ const ADD_PRODUCT_TO_CART = gql`
 `;
 
 export const useAddProductToCart = (): Function | null => {
-    const [addToCartFn, { data: cartData, loading: cartLoading, error: cartError }] =
-        useMutation(ADD_PRODUCT_TO_CART);
+    const [addToCartFn, { data: cartData, loading: cartLoading, error: cartError }] = useMutation(ADD_PRODUCT_TO_CART);
 
     if (cartLoading) {
         console.log('add to cart in progress...');

@@ -9,8 +9,7 @@ const GET_CART_ID = gql`
 `;
 
 export const useGetCartId = () => {
-    const [customerCartFn, { loading: cartIdLoading, error: cartIdError, data: cartIdData }] =
-        useLazyQuery(GET_CART_ID);
+    const [customerCartFn, { loading: cartIdLoading, error: cartIdError, data: cartIdData }] = useLazyQuery(GET_CART_ID);
     if (cartIdLoading) {
         return null;
     }

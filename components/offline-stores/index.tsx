@@ -24,8 +24,7 @@ const OfflineStoreWrapper = ({ title, vendors, sku }: OfflineStoreProps): JSX.El
                 className={`button-addtocart`}
                 onClick={async () => {
                     setCartLoading(true);
-                    const addToCartData =
-                        addProductToCartFn && (await addToCartHandler(addProductToCartFn, sku));
+                    const addToCartData = addProductToCartFn && (await addToCartHandler(addProductToCartFn, sku));
                     if (addToCartData) {
                         router.push('/cart-page');
                     }
