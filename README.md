@@ -13,7 +13,7 @@ yad
 Open [http://loclhost:3000](http://localhost:3000) with your browser to see the result
 You can starting the page by mod `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/aputes/intruction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hllo.ts`.
+[API routes](https://nextjs.org/docs/aputes/intruction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/aphllo.ts`.
 
 The `pages/api` ds mapped t `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
