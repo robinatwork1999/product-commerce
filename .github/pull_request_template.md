@@ -1,17 +1,14 @@
-## Description
-
-
-### [What]:
+## Descrption
 
 
 ---
 
-### [How]:
+## Implemention Details
 
 
 ---
 
-### [Link to Jira Ticket]:
+## Link to Jira Ticket
 
 
 ---
