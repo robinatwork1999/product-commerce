@@ -1,8 +1,5 @@
 ## Description
- \
  \ 
- 
-  
 ***
 
 ## Implemention Details
