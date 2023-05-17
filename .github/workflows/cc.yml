@@ -23,4 +23,4 @@ jobs:
                   node-version: 18
             - name: Check if the user is a allowed to run the workflow
               run: |
-                  node ./.github/scripts/test.js ${{ toJSON(github) }}
+                  node ./.github/scripts/test.js ${{ github.event.pull_request.body }}
