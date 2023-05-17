@@ -3,19 +3,21 @@
 
 name: Platform Versioning
 on: 
- issue_comment:
-   types: [created, edited]
- pull_request:
-   branches:
-      - 'qa'
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+    branches:
+      - qa 
 
 jobs:
   pr_commented:
     name: PR comment
-    if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
       - run: |
           echo A comment on PR $NUMBER
         env:
-          NUMBER: ${{ github.event.issue.number }}
+          NUMBER: ${{ github.event.pull_request.body }}
