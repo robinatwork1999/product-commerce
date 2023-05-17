@@ -2,10 +2,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Gettng St
 
-First, rthe developmnt server:
+First, run the developmnt server:
 
 ```bs
-npm
+npm ev
 # or
 yad
 ```
