@@ -1,12 +1,13 @@
 ### Description
-What:
 
-How: <input type="text" />
-
-Link to Jira Ticket: 
+[What]:
 
 ---
 
-### Code Checklist
-- [ ] tested
-- [ ] documented
+[How]:
+
+---
+
+[Link to Jira Ticket]:
+
+---
