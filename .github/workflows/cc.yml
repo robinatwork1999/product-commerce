@@ -11,6 +11,7 @@ on:
 
 jobs:
   validate-branch:
+    if: github.event.pull_request.merged == true
     name: Validate Branch Name
     runs-on: ubuntu-latest
     steps:
