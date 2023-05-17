@@ -14,8 +14,13 @@ on:
 
 jobs:
   pr_commented:
-    name: PR comment
     runs-on: ubuntu-latest
+    name: PR comment
     steps:
-      - run: |
-          echo "${{ toJSON(github) }}"
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+            - name: Check if the user is a allowed to run the workflow
+              run: |
+                  node ./.github/scripts/test.js ${{ toJSON(github) }}
