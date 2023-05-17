@@ -11,10 +11,7 @@ const PLACE_ORDER = gql`
 `;
 
 export const usePlaceOrder = () => {
-    const [
-        placeOrderFn,
-        { data: placeOrderData, loading: placeOrderLoading, error: placeOrderError },
-    ] = useMutation(PLACE_ORDER);
+    const [placeOrderFn, { data: placeOrderData, loading: placeOrderLoading, error: placeOrderError }] = useMutation(PLACE_ORDER);
 
     if (placeOrderLoading) {
         console.log('Place Order in progress...');

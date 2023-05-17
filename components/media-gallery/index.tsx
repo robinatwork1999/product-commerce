@@ -53,9 +53,7 @@ const MediaGallery = ({ images, pdpLoading, setPdpLoaded }: MediaGalleryTypes): 
                     showNav={!loading}
                     showIndex={!loading}
                     showThumbnails={windowWidth > MediaGalleryConfig.mobileRendition ?? false}
-                    thumbnailPosition={
-                        windowWidth > MediaGalleryConfig.mobileRendition ? 'left' : 'bottom'
-                    }
+                    thumbnailPosition={windowWidth > MediaGalleryConfig.mobileRendition ? 'left' : 'bottom'}
                 />
             )}
         </React.Fragment>

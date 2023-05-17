@@ -83,9 +83,7 @@ const Breadcrumb = ({ list }: BreadcrumbTypes & Partial<sessionStorageTypes>): J
                                             ></path>
                                         </svg>
                                     </span>
-                                    <span className="breadcrumb-item_cartcount">
-                                        {`${cartQuantity}`}
-                                    </span>
+                                    <span className="breadcrumb-item_cartcount">{`${cartQuantity}`}</span>
                                     <span className="breadcrumb-item_carttext">Cart</span>
                                 </a>
                             </Link>

@@ -1,16 +1,21 @@
-name: Theme-Generator - Agency-Dispatch
-'on':
-  workflow_dispatch:
+# This workflow will run after the pull request is merged
+# This workflow will update the platform version and will create release tag
+
+name: Platform Versioning
+on: 
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+    branches:
+      - qa 
 
 jobs:
-  generate:
+  pr_commented:
+    name: PR comment
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Setup configurations
-        run: >
-          echo "GITHUB_ORG=AEMCS" >> $GITHUB_ENV
-          echo "GITHUB_ACTOR=${{ github.actor }}" >> $GITHUB_ENV
+      - run: |
+          echo "lol"

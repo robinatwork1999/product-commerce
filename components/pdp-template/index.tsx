@@ -11,14 +11,7 @@ import type { Tablist } from 'components/tabs/tabs';
 import Text from 'components/text';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
-import type {
-    FAQProps,
-    PDPTemplateProps,
-    PinsInfo,
-    PinsObj,
-    StoreProps,
-    TabsComponentProps,
-} from './pdp-template';
+import type { FAQProps, PDPTemplateProps, PinsInfo, PinsObj, StoreProps, TabsComponentProps } from './pdp-template';
 
 import '@layout/_pdp.scss';
 import OfflineStoreWrapper from 'components/offline-stores';
@@ -148,11 +141,7 @@ const PDPTemplate = ({ MediaGalleryContent, TabInfo, FAQData }: PDPTemplateProps
         <div className="pdp">
             <div className="pdp-data">
                 <div className={`${pdpLoading && 'pdp-gallery-loading'} pdp-gallery`}>
-                    <MediaGalleryComponent
-                        pdpLoading={pdpLoading}
-                        setPdpLoaded={setPdpLoading}
-                        images={MediaGalleryContent}
-                    />
+                    <MediaGalleryComponent pdpLoading={pdpLoading} setPdpLoaded={setPdpLoading} images={MediaGalleryContent} />
                 </div>
                 <div className="pdp-content">
                     <TabsComponent tabInfo={TabInfo} />

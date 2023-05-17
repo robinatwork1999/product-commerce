@@ -21,18 +21,11 @@ const AccordionItemWrapper = ({ header, content }: AccordionType): JSX.Element =
         <React.Fragment>
             <div className="accordion__item">
                 <div className="accordion__heading">
-                    <button
-                        className={`accordion__button ${isOpen && `accordion__button-open`}`}
-                        onClick={() => toggleItem()}
-                    >
+                    <button className={`accordion__button ${isOpen && `accordion__button-open`}`} onClick={() => toggleItem()}>
                         {header}
                     </button>
                 </div>
-                <div
-                    ref={contentRef}
-                    style={{ maxHeight: contentOffset }}
-                    className={`accordion__panel`}
-                >
+                <div ref={contentRef} style={{ maxHeight: contentOffset }} className={`accordion__panel`}>
                     <p>{content}</p>
                 </div>
             </div>

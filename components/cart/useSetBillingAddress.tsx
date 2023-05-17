@@ -27,10 +27,7 @@ const SET_BILLING_ADDRESS = gql`
 `;
 
 export const useSetBillingAddress = () => {
-    const [
-        setBillingAddressFn,
-        { data: billingData, loading: billingLoading, error: billingError },
-    ] = useMutation(SET_BILLING_ADDRESS);
+    const [setBillingAddressFn, { data: billingData, loading: billingLoading, error: billingError }] = useMutation(SET_BILLING_ADDRESS);
 
     if (billingLoading) {
         console.log('logging in...');

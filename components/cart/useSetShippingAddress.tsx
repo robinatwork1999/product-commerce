@@ -2,9 +2,7 @@ import { useMutation, gql, ApolloError } from '@apollo/client';
 
 const SET_SHIPPING_ADDRESS = gql`
     mutation SetShippingAddress($cartId: String!, $shippingAddress: [ShippingAddressInput]!) {
-        setShippingAddressesOnCart(
-            input: { cart_id: $cartId, shipping_addresses: $shippingAddress }
-        ) {
+        setShippingAddressesOnCart(input: { cart_id: $cartId, shipping_addresses: $shippingAddress }) {
             cart {
                 shipping_addresses {
                     firstname
@@ -35,10 +33,7 @@ const SET_SHIPPING_ADDRESS = gql`
 `;
 
 export const useSetShippingAddress = () => {
-    const [
-        setShippingAddressFn,
-        { data: shippingData, loading: shippingLoading, error: shippingError },
-    ] = useMutation(SET_SHIPPING_ADDRESS);
+    const [setShippingAddressFn, { data: shippingData, loading: shippingLoading, error: shippingError }] = useMutation(SET_SHIPPING_ADDRESS);
 
     if (shippingLoading) {
         console.log('setting shipping address in...');
@@ -57,10 +52,7 @@ export const useSetShippingAddress = () => {
     return setShippingAddressFn;
 };
 
-export const setShippingAddressHandler = (
-    setShippingAddressFn: Function,
-    shippingAddress: Object,
-) => {
+export const setShippingAddressHandler = (setShippingAddressFn: Function, shippingAddress: Object) => {
     return new Promise((resolve, reject) => {
         setShippingAddressFn({
             variables: {
@@ -85,9 +77,7 @@ export const setShippingAddressHandler = (
                 ],
             },
             onCompleted: (shippingData: any) => {
-                const shippingMethods =
-                    shippingData.setShippingAddressesOnCart.cart.shipping_addresses[0]
-                        .available_shipping_methods;
+                const shippingMethods = shippingData.setShippingAddressesOnCart.cart.shipping_addresses[0].available_shipping_methods;
                 console.log(shippingMethods);
                 sessionStorage.setItem('shippingMethods', JSON.stringify(shippingMethods));
                 resolve(shippingData);

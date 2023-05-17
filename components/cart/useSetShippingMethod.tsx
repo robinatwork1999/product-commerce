@@ -18,10 +18,8 @@ const SET_SHIPPING_METHOD = gql`
 `;
 
 export const useSetShippingMethod = () => {
-    const [
-        setShippingMethodFn,
-        { data: shippingMethodData, loading: shippingMethodLoading, error: shippingMethodError },
-    ] = useMutation(SET_SHIPPING_METHOD);
+    const [setShippingMethodFn, { data: shippingMethodData, loading: shippingMethodLoading, error: shippingMethodError }] =
+        useMutation(SET_SHIPPING_METHOD);
 
     if (shippingMethodLoading) {
         console.log('shipping method setting in progress...');

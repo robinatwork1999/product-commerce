@@ -6,24 +6,12 @@ import { ReactSVG } from 'react-svg';
 import { KeywordMapper, ResultSet } from './utility';
 import { VoiceAsistantTypes } from './voice-assistant';
 
-const VoiceAssistant = ({
-    browserError,
-    noRes,
-    noIP,
-    micError,
-    tryAgain,
-}: VoiceAsistantTypes): JSX.Element => {
+const VoiceAssistant = ({ browserError, noRes, noIP, micError, tryAgain }: VoiceAsistantTypes): JSX.Element => {
     const [voiceError, setVoiceError] = useState<string>('');
     const [voiceWarn, setVoiceWarn] = useState<string>('');
     const [isTranscript, setTransDecision] = useState<boolean>(false);
     const router: NextRouter = useRouter();
-    const {
-        transcript,
-        listening,
-        resetTranscript,
-        browserSupportsSpeechRecognition,
-        isMicrophoneAvailable,
-    } = useSpeechRecognition();
+    const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition, isMicrophoneAvailable } = useSpeechRecognition();
 
     if (!browserSupportsSpeechRecognition) {
         setVoiceError(browserError);
@@ -85,11 +73,7 @@ const VoiceAssistant = ({
                     <React.Fragment>
                         {voiceError && <div className="voice-error">{voiceError}</div>}
                         {!voiceError && (
-                            <div
-                                className={`voice-transdata ${
-                                    !transcript.length && 'voice-listening'
-                                }`}
-                            >
+                            <div className={`voice-transdata ${!transcript.length && 'voice-listening'}`}>
                                 {transcript.length ? transcript : 'Listening...'}
                             </div>
                         )}
