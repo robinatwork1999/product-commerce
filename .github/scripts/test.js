@@ -1,3 +1,2 @@
-console.log(process.argv)
-console.log(process.argv[2])
+console.log(JSON.parse(process.argv[2]))
 
