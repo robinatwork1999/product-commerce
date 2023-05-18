@@ -33,7 +33,7 @@ if (pullRequestBody && pullRequestBody.length) {
 
   if (prBodyIssues.length) {
     prBodyIssues.forEach((x) => {
-      console.log(`${x.replace(/#/g, "")} is empty \n`);
+      console.log(`${x.replace(/#/g, "")} is empty`);
     });
     console.log("Exiting...");
     process.exit(1);
