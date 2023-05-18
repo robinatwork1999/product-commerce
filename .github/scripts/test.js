@@ -1,4 +1,5 @@
-let pullRequestBody = process.argv[2].replace(/\r\n/g, "");
+const pullRequestBody = process.argv[2].replace(/\r\n/g, "");
+console.log(pullRequestBody);
 
 if (pullRequestBody && pullRequestBody.length) {
   const prBodyKeys = [
@@ -33,7 +34,7 @@ if (pullRequestBody && pullRequestBody.length) {
 
   if (prBodyIssues.length) {
     prBodyIssues.forEach((x) => {
-      console.log(`${x.replace(/#/g, "")} is empty \n`);
+      console.log(`${x.replace(/#/g, "")} is empty`);
     });
     console.log("Exiting...");
     process.exit();
