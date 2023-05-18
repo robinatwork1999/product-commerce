@@ -1,5 +1,4 @@
 const pullRequestBody = process.argv[2].replace(/\r\n/g, "");
-console.log(pullRequestBody);
 
 if (pullRequestBody && pullRequestBody.length) {
   const prBodyKeys = [
@@ -20,13 +19,13 @@ if (pullRequestBody && pullRequestBody.length) {
   if (prBodyIssues.length || prSeperatorInstance != prBodyKeys.length) {
     console.log("Pull Request Template Is Not Being Followed");
     console.log("Exiting....");
-    process.exit();
+    process.exit(1);
   }
 
   const prKeys = pullRequestBody.split(prBodySeperator).slice(0, -1);
   prKeys.forEach((key) => {
     const currentKey = prBodyKeys.find((x) => key.indexOf(x) > -1);
-    const keyInfo = key.split(currentKey)[1];
+    const keyInfo = key.split(currentKey)[1].trim();
     if (!(keyInfo && keyInfo.length)) {
       prBodyIssues.push(currentKey);
     }
@@ -34,15 +33,15 @@ if (pullRequestBody && pullRequestBody.length) {
 
   if (prBodyIssues.length) {
     prBodyIssues.forEach((x) => {
-      console.log(`${x.replace(/#/g, "")} is empty`);
+      console.log(`${x.replace(/#/g, "")} is empty \n`);
     });
     console.log("Exiting...");
-    process.exit();
+    process.exit(1);
   } else {
     console.log("Pull Request Body Conforms The Validation");
   }
 } else {
   console.log("Pull Request Body Is Empty");
   console.log("Exiting....");
-  process.exit();
+  process.exit(1);
 }
