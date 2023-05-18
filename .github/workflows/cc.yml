@@ -1,8 +1,7 @@
-# This workflow will run after the pull request is merged
-# This workflow will update the platform version and will create release tag
+# This workflow will run when the pull request is created, edited, updated with new commits and reopened
 
-name: Platform Versioning
-on: 
+name: Pull Request Template Validator
+on:
   pull_request:
     types:
       - opened
@@ -10,24 +9,17 @@ on:
       - synchronize
       - reopened
     branches:
-      - qa 
+      - develop
 
 jobs:
-  pr_commented:
+  pr_body_validator:
+    name: Validating PR Body
     runs-on: ubuntu-latest
-    name: PR comment
     steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
-              with:
-                  node-version: 18
-            - name: Check if the user is a allowed to run the workflow
-              run: |
-                  node ./.github/scripts/test.js "${{ github.event.pull_request.body }}"
-            - name: Other variables with ENV
-              run: |
-                echo "Commits:" $COMMITS
-                echo "Message:" $MESSAGE
-                echo "Author Email:" $(echo $AUTHOR | jq -r '.body')
-              env:
-                AUTHOR: ${{ toJSON(github.event.pull_request) }}
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: "Validate PR Body"
+        run: |
+          node ./.github/scripts/test.js "${{ github.event.pull_request.body }}"
