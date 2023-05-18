@@ -9,7 +9,7 @@ on:
       - synchronize
       - reopened
     branches:
-      - develop
+      - qa
 
 jobs:
   pr_body_validator:
