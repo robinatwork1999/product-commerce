@@ -1,5 +1,3 @@
-console.log(process.argv[2])
-
 const pullRequestBody = process.argv[2].replace(/\r\n/g, "");
 console.log(process.argv[2])
 if (pullRequestBody && pullRequestBody.length) {
