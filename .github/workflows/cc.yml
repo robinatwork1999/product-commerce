@@ -20,7 +20,7 @@ jobs:
       id: base64-staging-gcr
       shell: bash
       run:
-        echo "::set-output name=STAGING_GCR_SA_BASE64::$(echo '${{ github.event.pull_request.body }}' | python -m base64 -e)"
+        echo "::set-output name=STAGING_GCR_SA_BASE64::$(echo "${{ github.event.pull_request.body }}" | python -m base64 -e)"
   pr_body_validator:
     name: Validating PR Body
     runs-on: ubuntu-latest
