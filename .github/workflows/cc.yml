@@ -12,23 +12,25 @@ on:
       - qa
 
 jobs:
+  ok_ok: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        id: set-result
+        with:
+          script: return "github.event.pull_request.body"
+          result-encoding: base64
   pr_body_validator:
     name: Validating PR Body
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/github-script@v6
       - uses: actions/setup-node@v3
         with:
-          node-version: 18    
+          node-version: 18   
+      - name: Get result
+        run: echo "${{steps.set-result.outputs.result}}"    
       - name: "Validate PR Body"
         run: |
           echo "${{ github.event.pull_request.body }} | base64"
           node ./.github/scripts/test.js "${{ toJson(github.event.pull_request) }}"
-      - name: "ok"    
-        id: set-result
-        with:
-          script: return "${{ github.event.pull_request.body }}"
-          result-encoding: base64
-      - name: Get result
-        run: echo "${{steps.set-result.outputs.result}}"     
