@@ -14,6 +14,9 @@ jobs:
     name: Looking For Automation PR
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.pull_request.head.ref, 'feature/automation-update') }}
+    steps:
+    - name: "Print Current Source Branch"
+      run: echo "Pull Request Source Branch ${{ github.event.pull_request.head.ref }}"
     
   wait-for-concurrency:
     name: Waiting For Previous Active Job(s) To Finish
