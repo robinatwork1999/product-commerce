@@ -19,11 +19,9 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18     
-      - name: Get result
+          node-version: 18
+      - name: "Validate PR Body"
         run: |
-           first='
-           second=&#39;
-           result=$(echo "${{ github.event.pull_request.body }}" | sed "s/$first/$second/g")
-           echo "$result"
-           node ./.github/scripts/test.js "$result"
+          $quoteEncodeVal=#39;
+          $encodedBody=$(echo "${{ github.event.pull_request.body }}" | sed "s/'/$quoteEncodeVal/g")
+          node ./.github/scripts/test.js "$encodedBody"
