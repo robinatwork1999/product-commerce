@@ -23,4 +23,4 @@ jobs:
       - name: "Validate PR Body"
         run: |
           echo "${{ github.event.pull_request.body }} | base64"
-          node ./.github/scripts/test.js \`${{ github.event.pull_request.body }}`\
+          node ./.github/scripts/test.js "${{ toJson(github.event.pull_request) }}"
