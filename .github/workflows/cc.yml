@@ -19,7 +19,7 @@ jobs:
        - uses: mad9000/actions-find-and-replace-string@3
          id: findandreplace
          with:
-          source: '${{ github.event.pull_request.body }}'
+          source: "'${{ github.event.pull_request.body }}'"
           find: "'"
           replace: '&quot' 
           replaceAll: 'true'
