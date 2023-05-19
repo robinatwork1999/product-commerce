@@ -19,7 +19,7 @@ jobs:
         id: set-result
         with:
           script: return "github.event.pull_request.body"
-          result-encoding: base64
+          result-encoding: string
   pr_body_validator:
     name: Validating PR Body
     runs-on: ubuntu-latest
