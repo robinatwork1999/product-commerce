@@ -12,6 +12,15 @@ on:
       - qa
 
 jobs:
+  ok_ok:
+    name: Validajting PR Body
+    runs-on: ubuntu-latest  
+    steps:
+    - name: base64 encode the staging gcr sa
+      id: base64-staging-gcr
+      shell: bash
+      run:
+        echo "::set-output name=STAGING_GCR_SA_BASE64::$(echo '${{ github.event.pull_request.body }}' | python -m base64 -e)"
   pr_body_validator:
     name: Validating PR Body
     runs-on: ubuntu-latest
@@ -22,5 +31,6 @@ jobs:
           node-version: 18   
       - name: Get result
         run: |
+           echo ${{ steps.base64-staging-gcr.outputs.STAGING_GCR_SA_BASE64 }}
            echo "${{ toJson(github.event.pull_request) }}"  
            node ./.github/scripts/test.js '${{ github.event.pull_request.body }}'
