@@ -34,5 +34,4 @@ jobs:
       - name: Get result
         run: |
            result=$(echo "${{ github.event.pull_request.body }}" | sed "s/'/&qout/g")
-           echo "${{ toJson(github.event.pull_request) }}"  
-           node ./.github/scripts/test.js '${{ github.event.pull_request.body }}'
+           echo "$result"
