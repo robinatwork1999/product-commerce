@@ -10,9 +10,14 @@ on:
       - qa
 
 jobs:
+  branch-filter:
+    name: Looking For Automation PR
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.pull_request.head.ref, 'feature/automation-update') }}
+    
   wait-for-concurrency:
     name: Waiting For Previous Active Job(s) To Finish
-    if: ${{ !contains(github.event.pull_request.head.ref, 'features/automation') }}
+    needs: branch-filter
     runs-on: ubuntu-latest
     steps:
      - name: "check data"
