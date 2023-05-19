@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 18   
       - name: Get result
-        run: echo "${{ github.event.pull_request.body}} | grep -F"    
-      - name: "Validate PR Body"
         run: |
-          node ./.github/scripts/test.js "${{steps.set-result.outputs.result}}"
+           currentStep="$(echo ${{ github.event.pull_request.body }} | grep -F)"
+           echo Current Step is: $currentStep
+           node ./.github/scripts/test.js $currentStep
