@@ -18,7 +18,7 @@ jobs:
       - uses: actions/github-script@v6
         id: set-result
         with:
-          script: return "github.event.pull_request.body"
+          script: return "${{ github.event.pull_request.body }}"
           result-encoding: string
   pr_body_validator:
     name: Validating PR Body
@@ -32,5 +32,4 @@ jobs:
         run: echo "${{steps.set-result.outputs.result}}"    
       - name: "Validate PR Body"
         run: |
-          echo "${{ github.event.pull_request.body }} | base64"
-          node ./.github/scripts/test.js "${{ toJson(github.event.pull_request) }}"
+          node ./.github/scripts/test.js "${{steps.set-result.outputs.result}}"
