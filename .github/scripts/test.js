@@ -3,7 +3,7 @@ console.log(pullRequestBody)
 if (pullRequestBody && pullRequestBody.length) {
   const prBodyKeys = [
     "### Description",
-    "### Implemention Details",
+    "### Implementation Details",
     "### Link to Jira Ticket",
   ];
   const prBodySeperator = "***";
