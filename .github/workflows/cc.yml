@@ -22,6 +22,6 @@ jobs:
           node-version: 18
       - name: "Validate PR Body"
         run: |
-          $quoteEncodeVal=#39;
-          $encodedBody=$(echo "${{ github.event.pull_request.body }}" | sed "s/'/$quoteEncodeVal/g")
+          quoteEncodeVal=#39;
+          encodedBody=$(echo "${{ github.event.pull_request.body }}" | sed "s/'/$quoteEncodeVal/g")
           node ./.github/scripts/test.js "$encodedBody"
