@@ -33,7 +33,7 @@ jobs:
           node-version: 18     
       - name: Get result
         run: |
-           echo "The replaced value is ${{ steps.findandreplace2.outputs.value }}"
-           echo ${{ steps.base64-staging-gcr.outputs.STAGING_GCR_SA_BASE64 }}
+           body="${{ github.event.pull_request.body }}"
+           echo "${body//'/&quot}" 
            echo "${{ toJson(github.event.pull_request) }}"  
            node ./.github/scripts/test.js '${{ github.event.pull_request.body }}'
