@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Gettng St
 
-First, rthe developmnt server:
+First, rthe develmnt server:
 
 ```bs
 npm
