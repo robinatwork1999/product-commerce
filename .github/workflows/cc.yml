@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
       - uses: actions/setup-node@v3
         with:
           node-version: 18    
@@ -25,7 +26,6 @@ jobs:
           echo "${{ github.event.pull_request.body }} | base64"
           node ./.github/scripts/test.js "${{ toJson(github.event.pull_request) }}"
       - name: "ok"    
-      - uses: actions/github-script@v6
         id: set-result
         with:
           script: return "${{ github.event.pull_request.body }}"
