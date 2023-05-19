@@ -2,9 +2,9 @@ const pullRequestBody = process.argv[2].replace(/\r\n/g, "");
 
 if (pullRequestBody && pullRequestBody.length) {
   const prBodyKeys = [
-    "## Description",
-    "## Implemention Details",
-    "## Link to Jira Ticket",
+    "### Description",
+    "### Implemention Details",
+    "### Link to Jira Ticket",
   ];
   const prBodySeperator = "***";
   const prSeperatorInstance = pullRequestBody.split(prBodySeperator).length - 1;
