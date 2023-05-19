@@ -22,4 +22,4 @@ jobs:
           node-version: 18
       - name: "Validate PR Body"
         run: |
-          node ./.github/scripts/test.js "${{ github.event.pull_request.body }}"
+          node ./.github/scripts/test.js `${{ github.event.pull_request.body }}`
