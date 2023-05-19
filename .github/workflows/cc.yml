@@ -12,17 +12,6 @@ on:
       - qa
 
 jobs:
-  ok_ok:
-      name: Run find-and-replace to remove refs/heads/
-      runs-on: ubuntu-latest
-      steps:
-       - uses: mad9000/actions-find-and-replace-string@3
-         id: findandreplace
-         with:
-          source: "'${{ github.event.pull_request.body }}'"
-          find: "'"
-          replace: '&quot' 
-          replaceAll: 'true'
   pr_body_validator:
     name: Validating PR Body
     runs-on: ubuntu-latest
@@ -33,5 +22,5 @@ jobs:
           node-version: 18     
       - name: Get result
         run: |
-           result=$(echo "${{ github.event.pull_request.body }}" | sed "s/'/&qout/g")
-           echo "$result"
+           result=$(echo "${{ github.event.pull_request.body }}" | sed "s/'/&#39;/g")
+           node ./github/scripts/test.js '$result'
