@@ -13,14 +13,14 @@ on:
 
 jobs:
   ok_ok:
-    name: Validajting PR Body
-    runs-on: ubuntu-latest  
-    steps:
-    - name: base64 encode the staging gcr sa
-      id: base64-staging-gcr
-      shell: bash
-      run:
-        echo "::set-output name=STAGING_GCR_SA_BASE64::$(echo "${{ github.event.pull_request.body }}" | python -m base64 -e)"
+    - name: Run find-and-replace to remove refs/heads/
+      uses: mad9000/actions-find-and-replace-string@3
+      id: findandreplace
+      with:
+        source: ${{ github.event.pull_request.body }}
+        find: "'"
+        replace: '&quot' 
+        replaceAll: 'true'
   pr_body_validator:
     name: Validating PR Body
     runs-on: ubuntu-latest
@@ -28,9 +28,10 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18   
+          node-version: 18     
       - name: Get result
         run: |
+           echo "The replaced value is ${{ steps.findandreplace2.outputs.value }}"
            echo ${{ steps.base64-staging-gcr.outputs.STAGING_GCR_SA_BASE64 }}
            echo "${{ toJson(github.event.pull_request) }}"  
            node ./.github/scripts/test.js '${{ github.event.pull_request.body }}'
