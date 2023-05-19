@@ -22,6 +22,5 @@ jobs:
           node-version: 18   
       - name: Get result
         run: |
-           currentStep="${{ github.event.pull_request.body }}"
-           echo Current Step is: $currentStep
-           node ./.github/scripts/test.js $currentStep
+           echo "${{ toJson(github.event.pull_request) }}"  
+           node ./.github/scripts/test.js '${{ github.event.pull_request.body }}'
