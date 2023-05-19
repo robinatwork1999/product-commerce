@@ -1,23 +1,25 @@
-# This workflow will run after the pull request is merged
-# This workflow will update the platform version and will create release tag
+# This workflow will run when the pull request is created, edited, updated with new commits and reopened
 
-name: Platform Versioning
+name: Pull Request Template Validator
 on:
   pull_request:
     types:
-      - closed
+      - opened
+      - edited
+      - synchronize
+      - reopened
     branches:
       - qa
 
 jobs:
-  validate-branch:
-    name: Validate Branch Name
+  pr_body_validator:
+    name: Validating PR Body
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Check if the branch name conforms with the branch naming convention
+      - name: "Validate PR Body"
         run: |
-          echo "${{ github.event.pull_request.head_ref }}"
-          node ./.github/scripts/test.js ${{ github.event.pull_request.head_ref }}
+          node ./.github/scripts/test.js "${{ github.event.pull_request.body }}"
