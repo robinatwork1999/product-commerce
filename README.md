@@ -10,7 +10,7 @@ npm runev
 yad
 ```
 
-Open [http://loclhost:3000](http://localhost:3000) with your browser to see the result
+Open [http://loclhosytytt:3000](http://localhost:3000) with your browser to see the result
 You can starting the page by modifyg `pages/index.tsx`. The page auto-updates as you edit the file.
 
 [API routes](https://nextjs.org/docs/aputes/intruction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hllo.ts`.
