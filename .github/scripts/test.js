@@ -1,5 +1,5 @@
 const pullRequestBody = process.argv[2].replace(/\r\n/g, "");
-
+console.log(pullRequestBody)
 if (pullRequestBody && pullRequestBody.length) {
   const prBodyKeys = [
     "### Description",
