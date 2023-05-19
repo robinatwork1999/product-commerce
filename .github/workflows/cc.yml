@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 18   
       - name: Get result
-        run: echo "${{ grep -F github.event.pull_request.body}}"    
+        run: echo "${{ github.event.pull_request.body}} | grep -F"    
       - name: "Validate PR Body"
         run: |
           node ./.github/scripts/test.js "${{steps.set-result.outputs.result}}"
