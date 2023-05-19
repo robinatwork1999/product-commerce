@@ -22,6 +22,8 @@ jobs:
           node-version: 18     
       - name: Get result
         run: |
-           result=$(echo "${{ github.event.pull_request.body }}" | sed "s/"'"/&#39;/g")
+           first='
+           second=&#39;
+           result=$(echo "${{ github.event.pull_request.body }}" | sed "s/$first/$second/g")
            echo "$result"
            node ./.github/scripts/test.js "$result"
