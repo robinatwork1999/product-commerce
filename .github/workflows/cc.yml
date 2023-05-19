@@ -33,6 +33,6 @@ jobs:
           node-version: 18     
       - name: Get result
         run: |
-           result=$(echo "$firstString" | sed "s/'/&qout/g")
+           result=$(echo "${{ github.event.pull_request.body }}" | sed "s/'/&qout/g")
            echo "${{ toJson(github.event.pull_request) }}"  
            node ./.github/scripts/test.js '${{ github.event.pull_request.body }}'
