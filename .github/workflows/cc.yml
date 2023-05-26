@@ -1,25 +1,12 @@
-# This workflow will run when the pull request is created, edited, updated with new commits and reopened
-
-name: Pull Request Template Validator
+name: "Workflow example"
 on:
-  pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
-      - reopened
-    branches:
-      - qa
+  schedule:
+    - cron: '*/1 * * * *'
 
 jobs:
-  pr_body_validator:
-    name: Validating PR Body
+  hello:
+    name: "Say hello"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: "Validate PR Body"
-        run: |
-          node ./.github/scripts/test.js '${{ github.event.pull_request.body }}' "${{ github.event.pull_request.head.ref }}"
+      - name: Display message
+        run: echo "Hello from GitHub Actions!"
