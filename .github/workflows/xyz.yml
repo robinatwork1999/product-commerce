@@ -25,5 +25,5 @@ jobs:
                   node-version: 18
             - name: Setup configurations
               run: |
-                  echo "${{ toJSON(github) }}"
+                  npm run two-check
 
