@@ -26,5 +26,5 @@ jobs:
             - name: Setup configurations
               run: |
                   echo "${{ github }}"
-                  echo git rev-parse HEAD
+                  echo "git rev-parse HEAD"
 
