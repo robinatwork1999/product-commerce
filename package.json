@@ -10,7 +10,8 @@
         "lint:css": "stylelint '**/*.scss'",
         "fix:css": "stylelint --fix '**/*.{css,scss}'",
         "format": "prettier --write '**/*.{css,scss,tsx,ts,jsx,js,json}'",
-        "input-check": "node ./config.js -- --argum=$npm_config_argum"
+        "input-check": "node ./config.js -- --argum=$npm_config_argum",
+        "two-check": "node ./check.js"
     },
     "dependencies": {
         "@apollo/client": "^3.7.4",
