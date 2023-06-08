@@ -2,23 +2,22 @@
 # This workflow will update the platform version and will create release tag
 
 name: Platform Versioning
-on:
+on: 
   pull_request:
     types:
-      - closed
+      - opened
+      - edited
+      - synchronize
+      - reopened
     branches:
-      - qa
+      - qa 
 
 jobs:
-  validate-branch:
-    name: Validate Branch Name
+  pr_commented:
+    name: PR comment
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Check if the branch name conforms with the branch naming convention
-        run: |
-          echo "${{ toJSON(github) }}"
-          node ./.github/scripts/test.js ${{ github.event.pull_request.head_ref }}
+      - run: |
+          echo A comment on PR $NUMBER
+        env:
+          NUMBER: ${{ github.event.pull_request.body }}
