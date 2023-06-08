@@ -25,6 +25,5 @@ jobs:
                   node-version: 18
             - name: Setup configurations
               run: |
-                  echo "${{ github }}"
-                  echo "git rev-parse HEAD"
+                  echo "${{ toJSON(github) }}"
 
