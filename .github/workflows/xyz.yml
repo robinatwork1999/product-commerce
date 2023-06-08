@@ -25,5 +25,6 @@ jobs:
                   node-version: 18
             - name: Setup configurations
               run: |
-                  echo "${{ github.ref }}"
+                  echo "${{ github }}"
+                  echo git rev-parse HEAD
 
