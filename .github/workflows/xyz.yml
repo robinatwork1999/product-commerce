@@ -1,34 +1,29 @@
-# This workflow will run after the pull request is merged
-# This workflow will update the platform version and will create release tag
+# This is a workflow used by developers to sync their changes with WhiteLabel/Showcase For Testing Purpose
 
-name: Platform Versioning
+name: Development Generator
+
 on:
-  pull_request:
-    types:
-      - closed
-    branches:
-      - qa
+    workflow_dispatch:
+        inputs:
+            choice:
+                type: choice
+                description: Select Brand
+                options:
+                    - whitelabel
+                    - showcase
+                    - test
 
 jobs:
-  branch-filter:
-    name: Looking For Automation PR
-    runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.pull_request.head.ref, 'feature/automation-update') }}
-    steps:
-    - name: "Print Current Source Branch"
-      run: echo "Pull Request Source Branch ${{ github.event.pull_request.head.ref }}"
-    
-  wait-for-concurrency:
-    name: Waiting For Previous Active Job(s) To Finish
-    needs: branch-filter
-    runs-on: ubuntu-latest
-    steps:
-     - name: "check data"
-       run: echo "here"
+    generate:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+              with: 
+                ref: 21
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+            - name: Setup configurations
+              run: |
+                  echo "${{ github.ref }}"
 
-  update-version:
-    runs-on: ubuntu-latest
-    needs: wait-for-concurrency
-    steps:
-     - name: "check data"
-       run: echo "here"
